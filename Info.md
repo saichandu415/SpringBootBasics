@@ -15,6 +15,10 @@ ADD >> COMMIT >> PUSH
 
 git add HELP.md
 
+### GIT BRANCHES
+git branch -a
+git checkout origin/development
+
 
 ### Spring Boot Annotations:
 @SpringBootApplication
