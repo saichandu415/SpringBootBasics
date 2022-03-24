@@ -1,17 +1,47 @@
 package com.raju.springbasics.controller;
 
 import com.raju.springbasics.model.Employee;
+import com.raju.springbasics.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
 
-    @GetMapping("/test")
-    public ResponseEntity<Object> testAPI(){
-        Employee employee = new Employee("Raju", 24);
-        return new ResponseEntity<>(employee,HttpStatus.OK);
+    // Singleton pattern & Inversion of Control
+    @Autowired
+    EmployeeService employeeService;
+
+    // JSON Marshalling & UnMarshalling
+
+    @GetMapping("/employee")
+    public ResponseEntity<Object> getEmployees(){
+        return new ResponseEntity<>(employeeService.getEmployeeDetails(),HttpStatus.OK);
     }
+
+    @PostMapping("/employee")
+    public ResponseEntity<Object> createEmployee(@RequestBody Employee employee){
+        final boolean isAdded = employeeService.createEmployee(employee);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("isCreated", isAdded);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/employee")
+    public ResponseEntity<Object> deleteEmployee(){
+        final boolean isDeleted = employeeService.deleteEmployee();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("isDeleted", isDeleted);
+
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
 }

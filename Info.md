@@ -26,3 +26,6 @@ git checkout origin/development
 
 ### Imp Commands:
 mvn spring-boot:run
+
+### Server
+Port change
