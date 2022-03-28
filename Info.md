@@ -21,11 +21,28 @@ git checkout origin/development
 
 
 ### Spring Boot Annotations:
-@SpringBootApplication
+- @SpringBootApplication
+- @RestController
+    - @RequestBody
+    - @RequestParam
+    - @GetMapping
+    - @PostMapping
+    - @DeleteMapping
+- @Service
+- @Repository
+- @Autowired
+- @Override
 
+### REST API's:
+- GET
+- POST
+- PATCH
+- PUT
+- DELETE
 
 ### Imp Commands:
 mvn spring-boot:run
 
 ### Server
 Port change
+server.port

@@ -6,33 +6,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
-public class EmployeeService {
-
-    // IEmployeeService - EmployeeService
-    // EmployeeService - EmployeeServiceImpl
+public class NewEmployeeService implements IEmpService {
 
     @Autowired
     IEmpDao employeeDao;
 
-//    @Override
+    @Override
     public List<Employee> getEmployeeDetails(){
+        System.out.println("NewEmployeeService.getEmployeeDetails");
         final List<Employee> employeeList = employeeDao.getEmployeeList();
         return employeeList;
     }
 
-//    @Override
+    @Override
     public boolean createEmployee(Employee employee){
+        employee.setId(UUID.randomUUID().toString());
         final boolean isAdded = employeeDao.createEmployee(employee);
-        System.out.println("EmployeeService.createEmployee :: "+isAdded);
+        System.out.println("NewEmployeeService.createEmployee :: "+isAdded);
         return isAdded;
     }
 
-//    @Override
+    @Override
     public boolean deleteEmployee(String id){
         final boolean isDeleted = employeeDao.deleteEmployee(id);
         return isDeleted;
     }
-
 }

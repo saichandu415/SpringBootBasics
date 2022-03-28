@@ -7,24 +7,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class EmployeeDao {
+public class EmployeeDao implements IEmpDao {
 
     List<Employee> employeeList = new ArrayList<>();
 
-    public boolean createEmployee(Employee employee){
+    @Override
+    public boolean createEmployee(Employee employee) {
         final boolean isAdded = employeeList.add(employee);
-        System.out.println("EmployeeDao.createEmployee :: "+employeeList.size());
+        System.out.println("EmployeeDao.createEmployee :: " + employeeList.size());
         System.out.println(employeeList);
         return isAdded;
     }
 
-    public List<Employee> getEmployeeList(){
+    @Override
+    public List<Employee> getEmployeeList() {
         return employeeList;
     }
 
-    public boolean deleteEmployee(){
-       employeeList.remove(employeeList.size() - 1);
-        return true;
+    @Override
+    public boolean deleteEmployee(String id) {
+        int index = -1;
+        for (int i = 0; i < employeeList.size(); i++) {
+            Employee employee = employeeList.get(i);
+            if (employee.getId().equals(id)) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1)
+            return false;
+        else {
+            employeeList.remove(index);
+            return true;
+        }
     }
 
 
