@@ -17,8 +17,8 @@ public class EmployeeService {
     IEmpDao employeeDao;
 
 //    @Override
-    public List<Employee> getEmployeeDetails(){
-        final List<Employee> employeeList = employeeDao.getEmployeeList();
+    public List<Employee> getEmployeeDetails(boolean isActive){
+        final List<Employee> employeeList = employeeDao.getEmployeeList(isActive);
         return employeeList;
     }
 

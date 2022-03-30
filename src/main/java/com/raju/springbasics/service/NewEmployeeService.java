@@ -15,9 +15,9 @@ public class NewEmployeeService implements IEmpService {
     IEmpDao employeeDao;
 
     @Override
-    public List<Employee> getEmployeeDetails(){
+    public List<Employee> getEmployeeDetails(boolean isActive){
         System.out.println("NewEmployeeService.getEmployeeDetails");
-        final List<Employee> employeeList = employeeDao.getEmployeeList();
+        final List<Employee> employeeList = employeeDao.getEmployeeList(isActive);
         return employeeList;
     }
 
@@ -33,5 +33,17 @@ public class NewEmployeeService implements IEmpService {
     public boolean deleteEmployee(String id){
         final boolean isDeleted = employeeDao.deleteEmployee(id);
         return isDeleted;
+    }
+
+    @Override
+    public boolean updateStatus(String id, boolean status) {
+        boolean isUpdated = employeeDao.updateStatus(id, status);
+        return isUpdated;
+    }
+
+    @Override
+    public boolean updateEmployee(Employee employee) {
+        boolean isUpdated = employeeDao.updateEmployee(employee);
+        return false;
     }
 }

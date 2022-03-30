@@ -27,6 +27,8 @@ git checkout origin/development
     - @RequestParam
     - @GetMapping
     - @PostMapping
+    - @PutMapping
+    - @PatchMapping
     - @DeleteMapping
 - @Service
 - @Repository

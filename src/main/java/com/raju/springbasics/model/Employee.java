@@ -5,14 +5,16 @@ public class Employee {
     private String id;
     private String name;
     private int age;
+    private boolean active;
 
     public Employee() {
     }
 
-    public Employee(String id, String name, int age) {
+    public Employee(String id, String name, int age, boolean active) {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.active = active;
     }
 
     public String getId() {
@@ -39,12 +41,21 @@ public class Employee {
         this.age = age;
     }
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
+                ", active=" + active +
                 '}';
     }
 }
